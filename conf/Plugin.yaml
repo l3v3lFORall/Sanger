@@ -1,0 +1,16 @@
+PluginTest:
+  PluginPath: plugin.test.ptest
+  Params:
+    a: 1
+    b: 2
+    c: test
+  Output:
+    - url
+    - ip
+PluginTest2:
+  PluginPath: plugin.test.pt2est2
+  Params:
+    c: test
+  Output:
+    - cms
+    - version
