@@ -2,6 +2,6 @@ from core import PluginManager
 
 
 a = PluginManager.MyManager()
-a.loadConf("HostPentest.yaml")
+a.loadConf("Android.yaml")
 # a.loadPlugin("loadTarget")
 a.workbyQueue()
