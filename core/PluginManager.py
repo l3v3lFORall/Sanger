@@ -43,13 +43,18 @@ class MyManager(BaseManager):
 
     def run(self, codename:str):
         __p = self.getPlugin(codename).interface()
+
         if self.output is not None:
             self.config[codename].update(self.output)
+            # 增加上一个插件的输出数据
         __c = self.config[codename]
+        l.d_(__c)
         __p.checkEnv()
         __p.setParam(__c["Params"])
         l.i_("Running " + __p.getPluginname()+ "@" +__p.getVersion())
         self.output = __p.run(__c)
+        self.output["Input"] = self.config[codename]["Output"]
+        # 将上一个插件的输出键值保存为下一个插件的输入键值
     def workbyQueue(self):
         if not hasattr(self, 'pqueue'):
             # 当没指定运行某个单独的插件或插件列表时，默认按顺序执行所有插件
