@@ -19,6 +19,7 @@ class interface(PluginCore.BasePlugin):
         import os
         try:
             cmd_result1 = os.popen("adb devices").read()
+            l.d_(cmd_result1)
             if 'List of devices attached\n\n' == cmd_result1: 
                 raise AttributeError("ADB连接异常")
             assert(isinstance(_params["target"], list))
