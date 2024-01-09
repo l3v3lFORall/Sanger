@@ -43,16 +43,18 @@ class MyManager(BaseManager):
 
     def run(self, codename:str):
         __p = self.getPlugin(codename).interface()
+        if self.output is not None:
+            self.config[codename].update(self.output)
         __c = self.config[codename]
         __p.checkEnv()
         __p.setParam(__c["Params"])
-        __p.run(__c)
         l.i_("Running " + __p.getPluginname()+ "@" +__p.getVersion())
-    
+        self.output = __p.run(__c)
     def workbyQueue(self):
         if not hasattr(self, 'pqueue'):
             # 当没指定运行某个单独的插件或插件列表时，默认按顺序执行所有插件
             self.loadAll()
+        self.output = {}
         for _cn in self.pqueue.keys():
             self.run(_cn)
 

@@ -25,8 +25,8 @@ class BasePlugin:
         '''
         pass
     def run(self, options=None):
-        self.output(options)
-        pass
+        return self.output(options)
+
     def output(self, params=None):
         pass
 

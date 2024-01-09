@@ -7,7 +7,7 @@ PluginTest:
   Output:
     - url
     - ip
-PluginTest2:
+PluginTemplate2:
   PluginPath: plugin.test.pt2est2
   Params:
     c: test
