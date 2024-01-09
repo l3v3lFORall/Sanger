@@ -56,6 +56,8 @@ class BaseManager:
             'a': '',
             'b': ''
         }
+    def loadAll(self):
+        pass
     def getPluginByList(self, codelist:list):
         '''
         按列表返回插件列表

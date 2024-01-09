@@ -28,16 +28,31 @@ class MyManager(BaseManager):
             _config["PluginPath"]
         )
         l.d_(f"Loaded plugin({codename}): {str(self.pqueue[codename])}")
+    def loadPluginByList(self, codelist: list):
+        for codename in codelist:
+            super().loadPlugin(codename)
+            _config = self.config[codename]
+            self.pqueue[codename] = importlib.import_module(
+                _config["PluginPath"]
+            )
+            l.d_(f"Loaded plugin({codename}): {str(self.pqueue[codename])}")
+
+    def loadAll(self):
+        self.loadPluginByList(list(self.config.keys()))
+
 
     def run(self, codename:str):
         __p = self.getPlugin(codename).interface()
         __c = self.config[codename]
         __p.checkEnv()
         __p.setParam(__c["Params"])
-        __p.run()
+        __p.run(__c)
         l.i_("Running " + __p.getPluginname()+ "@" +__p.getVersion())
     
     def workbyQueue(self):
+        if not hasattr(self, 'pqueue'):
+            # 当没指定运行某个单独的插件或插件列表时，默认按顺序执行所有插件
+            self.loadAll()
         for _cn in self.pqueue.keys():
             self.run(_cn)
 

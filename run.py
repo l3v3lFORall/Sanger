@@ -2,7 +2,6 @@ from core import PluginManager
 
 
 a = PluginManager.MyManager()
-a.loadConf("Plugin.yaml")
-a.loadPlugin("PluginTest")
-a.loadPlugin("PluginTest2")
+a.loadConf("Android.yaml")
+# a.loadPlugin("AndroidPentest2")
 a.workbyQueue()
