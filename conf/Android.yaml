@@ -19,4 +19,4 @@ PullFS:
     target: 
       - /
     deviceName: ""
-  Output: ouput/fsoutput
+  Output: output/fsoutput

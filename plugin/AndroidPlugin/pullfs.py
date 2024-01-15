@@ -40,17 +40,18 @@ class interface(PluginCore.BasePlugin):
         root_path = current_path.parent.parent
 
         if not os.path.exists(_output):
-            os.mkdir(_output)
+            os.makedirs(_output)
 
         try:
+            _targetList = options[options["Input"]] # 接收上一个插件的输出
             cmd_result1 = os.popen("adb devices").read()
             l.d_(cmd_result1)
             if 'List of devices attached\n\n' == cmd_result1: 
                 raise AttributeError("ADB连接异常")
-            assert(isinstance(_params["target"], list))
+            assert(isinstance(_targetList, list))
 
             deviceName = self.getDevice(cmd_result1, options=_params)
-            for _path in _params["target"]:
+            for _path in _targetList:
                 self.outpath = os.path.join(root_path, _output)
                 l.i_(f"Pulling {deviceName}'s {_path} to {self.outpath}")
                 os.system(f"adb root && adb -s {deviceName} pull {_path} {self.outpath}")

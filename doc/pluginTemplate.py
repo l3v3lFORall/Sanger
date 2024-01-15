@@ -16,7 +16,8 @@ class interface(PluginCore.BasePlugin):
     def run(self, options=None):
         l.i_("")
         try:
-        	something.do()    
+            perivousInput = options[options["Input"]] # 接收上一个插件的输出  
         except Exception as e:
             l.exception(e)
+            exit(-1)
         return super().run(options)

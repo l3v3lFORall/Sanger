@@ -11,6 +11,7 @@ class interface(PluginCore.BasePlugin):
         # 例如：[2024-01-15  10:41:26.386] PluginManager.py -> run line:54 [INFO] : Running AndroidPullFileSystem@0.0.1
     def getDevice(self, cmd, options=None):
         data = list(filter(None, cmd.split('\n')))[1:]
+        # 剔除空值
         if len(data) == 1:
             # 只有一个设备
             return str(data[0].split('\t')[0])
