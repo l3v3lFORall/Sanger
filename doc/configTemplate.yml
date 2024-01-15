@@ -1,0 +1,16 @@
+插件名1:
+  PluginPath: 将被python引用的插件路径，不带py后缀名
+  Params: # 指定插件使用到的参数
+    target: # 自定义参数
+      - /data	# 数组参数
+      - /etc
+    deviceName: "127.0.0.1:62005" # 自定义字符串参数
+  Output: output # 通过字符串，声明插件运行结束后，使用此键值保存运行结果
+插件名2:
+  PluginPath: plugin.AndroidPlugin.pullfs
+  Params:
+    target: 
+      - /data
+      - /etc
+    deviceName: "127.0.0.1:62005"
+  Output: output
