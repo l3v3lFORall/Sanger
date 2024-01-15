@@ -160,6 +160,8 @@ class Logger:
     def c_(self, msg):
         msg = str(msg)
         return self.logger.critical(msg, stacklevel=2)
+    def exception(self, e):
+        return logging.exception(e)
     
 if __name__ == '__main__':
     l = Logger()

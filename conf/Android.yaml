@@ -2,6 +2,15 @@ AndroidPentest2:
   PluginPath: plugin.AndroidPlugin.pullfs
   Params:
     target: 
-      - /
-    deviceName: Ignore
-  Output: savepath
+      - /data
+      - /etc
+    deviceName: "127.0.0.1:62005"
+  Output: output
+AndroidPentest3:
+  PluginPath: plugin.AndroidPlugin.pullfs
+  Params:
+    target: 
+      - /data
+      - /etc
+    deviceName: "127.0.0.1:62005"
+  Output: output
