@@ -29,8 +29,8 @@ class interface(PluginCore.BasePlugin):
         l.i_(f"Pulled Files to {self.outpath}")
         return {params["Output"] : self.outpath}
     def run(self, options=None):
-        # TODO 增加处理Input的代码
-        # TODO 拆分为检查adb状态的插件CheckADBTarget和拉取文件系统的插件PullFS
+        # NEW 增加处理Input的代码
+        # NEW 拆分为检查adb状态的插件CheckADBTarget和拉取文件系统的插件PullFS
         l.i_("""准备导出安卓文件系统""")
         _params = options["Params"]
         _output = options["Output"]

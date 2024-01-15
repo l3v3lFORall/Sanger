@@ -7,9 +7,6 @@ CheckADBTarget:
 GetFSList:
   PluginPath: plugin.AndroidPlugin.getfslist
   Params:
-    target: 
-      - /data
-      - /etc
     deviceName: ""
   Output: fslist
 
