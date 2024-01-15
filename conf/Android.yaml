@@ -1,16 +1,22 @@
-AndroidPentest2:
-  PluginPath: plugin.AndroidPlugin.pullfs
+CheckADBTarget:
+  PluginPath: plugin.AndroidPlugin.CheckADBTarget
+  Params:
+    deviceName: "127.0.0.1:62005"
+  Output: deviceName
+
+GetFSList:
+  PluginPath: plugin.AndroidPlugin.getfslist
   Params:
     target: 
       - /data
       - /etc
-    deviceName: "127.0.0.1:62005"
-  Output: output
-AndroidPentest3:
+    deviceName: ""
+  Output: fslist
+
+PullFS:
   PluginPath: plugin.AndroidPlugin.pullfs
   Params:
     target: 
-      - /data
-      - /etc
-    deviceName: "127.0.0.1:62005"
-  Output: output
+      - /
+    deviceName: ""
+  Output: ouput/fsoutput

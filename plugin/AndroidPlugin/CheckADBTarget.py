@@ -5,8 +5,10 @@ l = PluginManager.getLogger()
 class interface(PluginCore.BasePlugin):
     def __init__(self):
         super().__init__()
-        self.codename = "AndroidPullFileSystem"
-        self.outpath = "./"
+        self.plugin_output = ''
+        self.version = "0.0.1"
+        self.codename = "CheckADBTarget"	#插件代号，在执行前在命令行显示，是插件的正式名称
+        # 例如：[2024-01-15  10:41:26.386] PluginManager.py -> run line:54 [INFO] : Running AndroidPullFileSystem@0.0.1
     def getDevice(self, cmd, options=None):
         data = list(filter(None, cmd.split('\n')))[1:]
         if len(data) == 1:
@@ -20,40 +22,24 @@ class interface(PluginCore.BasePlugin):
             for _d in data:
                 serialNum, _ = _d.split('\t')
                 if input("Use This Device[Y/N]:").lower() == 'y': 
+                    # TODO 检查正确性
                     return serialNum
                 else:
                     continue
             raise AttributeError("ADB 设备选择异常：检查设备是否存在；是否在配置文件中正确指定")
     def output(self, params=None):
-        l.d_("正在按照设置处理插件输出")
-        l.i_(f"Pulled Files to {self.outpath}")
-        return {params["Output"] : self.outpath}
+        l.i_(f"插件输出参数：{params['Output']}: {self.deviceName}")
+        return {params["Output"] : self.deviceName}
     def run(self, options=None):
-        # TODO 增加处理Input的代码
-        # TODO 拆分为检查adb状态的插件CheckADBTarget和拉取文件系统的插件PullFS
-        l.i_("""准备导出安卓文件系统""")
-        _params = options["Params"]
-        _output = options["Output"]
-        from pathlib import Path
-        import os
-        current_path = Path(__file__).resolve().parent
-        root_path = current_path.parent.parent
-
-        if not os.path.exists(_output):
-            os.mkdir(_output)
-
+        l.i_(f"{self.codename}: 检查adb设备")
         try:
+            _params = options["Params"]
+            import os
             cmd_result1 = os.popen("adb devices").read()
             l.d_(cmd_result1)
             if 'List of devices attached\n\n' == cmd_result1: 
-                raise AttributeError("ADB连接异常")
-            assert(isinstance(_params["target"], list))
-
-            deviceName = self.getDevice(cmd_result1, options=_params)
-            for _path in _params["target"]:
-                self.outpath = os.path.join(root_path, _output)
-                l.i_(f"Pulling {deviceName}'s {_path} to {self.outpath}")
-                os.system(f"adb root && adb -s {deviceName} pull {_path} {self.outpath}")
+                raise AttributeError("ADB连接异常")  
+            self.deviceName = self.getDevice(cmd_result1, options=_params)
         except Exception as e:
             l.exception(e)
         return super().run(options)
