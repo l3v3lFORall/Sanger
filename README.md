@@ -12,6 +12,10 @@
             - [x] loadTarget 多种方式加载目标/目标列表
             - [x] PortScan  端口扫描(namp)(root in linux only)
             - [x] ServiceRecon  端口服务识别(nmap)(root in linux only)
+            - [ ] ServiceRecon2 
+            - [ ] vulnscan1-xray
+            - [ ] vulnscan2-nuclei
+            - [ ] vulnscan3-vulmap
         - 车机安卓渗透
             - 基础检查
                 - [x] CheckADBTarget 检查adb连接状态
