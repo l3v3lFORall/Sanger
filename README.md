@@ -29,7 +29,7 @@
                 - [ ] checkstrip    检查strip和debug符号
                 - [ ] findsecret    全盘搜索可疑关键字
                 - [ ] checkcron     检查计划任务
-            
+        - [ ] =>数据保存到数据库
             
     - [ ] 任务结果可视化
     - [ ] [*]中断继续
