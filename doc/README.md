@@ -41,6 +41,13 @@ l.c_('critical')
 BasePlugin类定义了单个Plugin的工作流程，BaseManager类则负责控制一个队列的Plugin工作。（目前只支持顺序执行）BaseManager的期望使用顺序是：`加载配置loadConf->加载插件loadPlugin/插件队列loadPluginByList/全部顺序加载loadAll->执行Plugin类的规范流程workByQueue->结束`
 
 ![](https://cdn.nlark.com/yuque/0/2024/jpeg/1269792/1704793189998-19ce4ee7-7543-44c7-9af2-bb9904401c76.jpeg)
+
+## DBBackend
+单例sqlite3数据库，插件想要保存的数据都保存在这里。
+表1:Sanger
+
+
+
 # 模板
 ## 配置文件模板
 ```yaml
@@ -85,3 +92,5 @@ class interface(PluginCore.BasePlugin):
             l.exception(e)
         return super().run(options)
 ```
+
+

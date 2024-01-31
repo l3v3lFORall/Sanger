@@ -162,7 +162,79 @@ class Logger:
         return self.logger.critical(msg, stacklevel=2)
     def exception(self, e):
         return logging.exception(e)
-    
+
+
+class Singleton(object):
+    def __init__(self, cls):
+        self._cls = cls
+        self._instance = {}
+    def __call__(self):
+        if self._cls not in self._instance:
+            self._instance[self._cls] = self._cls()
+        return self._instance[self._cls]
+
+# 单例模式
+@Singleton
+class DBBackend():
+    self._conn = None
+
+    self._DBPath = None
+    def __init__(self, dbpath="Sanger.db"):
+        # 检查数据库，如果已经存在_conn则返回_conn，如果没有建立_conn，则按照dbpath新建sqlite连接，保存并返回_conn。
+        if self._conn == None:
+            import os
+            if not os.path.exists('log'):
+                os.mkdir("log")
+            import sqlite3
+            self._conn = sqlite3.connect(dbpath)
+        else:
+            pass
+        self.checkDB()
+        self._cur = self._conn.cursor()
+        return self._conn
+    def checkDB(self):
+        # 检查数据库的基本结构，如果是新数据库，则初始化数据库
+        pass
+
+    def _s(self, sql):
+        # select query
+        '''
+        res = cur.execute("SELECT name FROM sqlite_master")
+        res.fetchone()
+        res.fetchall()
+        '''
+        pass
+    def _bs(self, data, sql):
+        # batch select query
+        '''
+        data = [
+            ("Monty Python Live at the Hollywood Bowl", 1982, 7.9),
+            ("Monty Python's The Meaning of Life", 1983, 7.5),
+            ("Monty Python's Life of Brian", 1979, 8.0),
+        ]
+        cur.executemany("INSERT INTO movie VALUES(?, ?, ?)", data)
+        con.commit()  # Remember to commit the transaction after executing INSERT.
+        '''
+        pass
+
+    def _i(self, sql):
+        # insert query
+        '''
+        The INSERT statement need commit
+        con.commit()
+        '''
+        pass
+    def _d(self, sql):
+        # delete query
+        # conn.commit()
+        pass
+    def _u(self, sql):
+        # update query
+        # conn.commit()
+        pass
+
+
+
 if __name__ == '__main__':
     l = Logger()
     l.outputLog2File()
