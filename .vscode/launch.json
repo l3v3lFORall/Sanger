@@ -8,7 +8,7 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "python": "C:/Users/UIDQ9589/AppData/Local/miniconda3/python.exe",
+            "python": "python",
             "program": "run.py",
             "console": "integratedTerminal",
             "justMyCode": true

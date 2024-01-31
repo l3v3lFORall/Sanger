@@ -176,9 +176,9 @@ class Singleton(object):
 # 单例模式
 @Singleton
 class DBBackend():
-    self._conn = None
+    _conn = None
 
-    self._DBPath = None
+    _DBPath = None
     def __init__(self, dbpath="Sanger.db"):
         # 检查数据库，如果已经存在_conn则返回_conn，如果没有建立_conn，则按照dbpath新建sqlite连接，保存并返回_conn。
         if self._conn == None:

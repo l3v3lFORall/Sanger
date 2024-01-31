@@ -29,6 +29,9 @@ class interface(PluginCore.BasePlugin):
                     continue
             raise AttributeError("ADB 设备选择异常：检查设备是否存在；是否在配置文件中正确指定")
     def output(self, params=None):
+        if not hasattr(self, "deviceName"):
+           l.e_("ADB连接异常，未找到设备")
+           exit()
         l.i_(f"插件输出参数：{params['Output']}: {self.deviceName}")
         return {params["Output"] : self.deviceName}
     def run(self, options=None):
