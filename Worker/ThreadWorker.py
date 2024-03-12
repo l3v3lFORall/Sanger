@@ -18,3 +18,7 @@ class tWorker():
     def setOutsider(self) -> None:
         # 运行结果向外部调用提供
         pass
+
+if __name__ == "__main__":
+    tw = tWorker()
+    tw.getConfig()

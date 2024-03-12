@@ -1,0 +1,7 @@
+1:   # 顺序运行
+	- testa
+2:
+	- testb # 并行运行
+	- testc
+3:
+	- testd
