@@ -85,3 +85,11 @@ class Logger:
     def exception(self, e):
         return logging.exception(e)
 
+if __name__ == '__main__':
+    l = Logger()
+    l.outputLog2File()
+    l.d_('test')
+    l.i_('aa')
+    l.w_('debug')
+    l.e_('debug')
+    l.c_('debug')
